@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login or Register</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'login_reg/css/style.css' %}">
+	<style type="text/css">
+		.error{
+			color:red;
+		}
+	</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Registration Form</h2>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form action="/users" method="POST">
+        <div class="imgcontainer">
+        <img src="static/img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+        {% csrf_token %}
+        <label><b>Name</b></label>
+        <input type="text" placeholder="Enter Name" name="name" required>
+        <label><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+        <label><b>Confirm Password</b></label>
+        <input type="password" placeholder="Enter Username" name="password_conf" required>
+        <button type="submit">Submit</button>
+        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+    </form>
+</div>
+    
+<div class="container">
+    <h2>Login Form</h2>
+    <form action='/login' method="POST">
+        <div class="imgcontainer">
+        <img src="static/img_avatar3.png" alt="Avatar" class="avatar">
+        </div>
+        {% csrf_token %}
+        <label><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+        <button type="submit">Login</button>
+
+        <input type="checkbox" checked="checked"> Remember me
+        <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+    </form>
+</div>
+
+
+
+</body>
+</html>
